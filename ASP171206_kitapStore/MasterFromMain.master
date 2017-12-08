@@ -1,0 +1,55 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="MasterFromMain.master.cs" Inherits="ASP171206_kitapStore.MasterFromMain" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
+
+
+
+    <div class="container mt-3 mb-3">
+        <div class="row">
+            <div class="col-3">
+
+                <asp:Repeater ID="kategoriList" runat="server">
+
+                    <HeaderTemplate>
+                        <div class="list-group">
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <a class="list-group-item" href="/Books.aspx?katID=<%#Eval("Id") %>"><%#Eval("KategoriAdi")%></a>
+                    </ItemTemplate>
+                    <FooterTemplate>
+                        </div>
+                    </FooterTemplate>
+
+                </asp:Repeater>
+
+            </div>
+
+
+            <div class="col-9">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolderIcerik" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        $(function () {
+            $('.list-group .list-group-item').click(function (e) {
+                e.preventDefault()
+
+                $that = $(this);
+
+                $that.parent().find('a').removeClass('active');
+                $that.addClass('active');
+            });
+        })
+    </script>
+
+</asp:Content>
+
+
+
+
